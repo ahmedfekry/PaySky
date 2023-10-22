@@ -15,6 +15,6 @@ To build and run your sample:
     ```
 
 # Instructions
-1- the project uses migrations/sql server .
-2- Please register first with Employer/Applicant role and then you can consume the apis .
+1- the project uses migrations/sql server. <br />
+2- Please register first with Employer/Applicant role and then you can consume the apis. <br />
 3- the project uses web api authentication using JWT.
