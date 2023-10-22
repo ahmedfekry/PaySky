@@ -1,0 +1,138 @@
+2023-10-20 00:19:28.983 +03:00 [INF] Registered 5 endpoints in 929 milliseconds.
+2023-10-20 00:19:29.234 +03:00 [INF] User profile is available. Using 'C:\Users\ahmed\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-10-20 00:19:30.093 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA journal_mode = 'wal';
+2023-10-20 00:19:30.192 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Contributors" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Contributors" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL
+);
+2023-10-20 00:19:30.192 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Projects" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Projects" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Priority" INTEGER NOT NULL
+);
+2023-10-20 00:19:30.193 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "ToDoItems" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_ToDoItems" PRIMARY KEY AUTOINCREMENT,
+    "Title" TEXT NOT NULL,
+    "Description" TEXT NOT NULL,
+    "ContributorId" INTEGER NULL,
+    "IsDone" INTEGER NOT NULL,
+    "ProjectId" INTEGER NULL,
+    CONSTRAINT "FK_ToDoItems_Projects_ProjectId" FOREIGN KEY ("ProjectId") REFERENCES "Projects" ("Id")
+);
+2023-10-20 00:19:30.193 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_ToDoItems_ProjectId" ON "ToDoItems" ("ProjectId");
+2023-10-20 00:19:30.426 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2023-10-20 00:19:30.478 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+2023-10-20 00:19:30.482 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."ContributorId", "t"."Description", "t"."IsDone", "t"."ProjectId", "t"."Title"
+FROM "ToDoItems" AS "t"
+2023-10-20 00:19:30.485 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name"
+FROM "Contributors" AS "c"
+2023-10-20 00:19:30.695 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (Size = 7)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Name")
+VALUES (@p0)
+RETURNING "Id";
+2023-10-20 00:19:30.735 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 8)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Name")
+VALUES (@p0)
+RETURNING "Id";
+2023-10-20 00:19:30.924 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 12), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Projects" ("Name", "Priority")
+VALUES (@p0, @p1)
+RETURNING "Id";
+2023-10-20 00:19:30.940 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p2='?' (DbType = Int32), @p3='?' (Size = 31), @p4='?' (DbType = Boolean), @p5='?' (DbType = Int32), @p6='?' (Size = 18)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("ContributorId", "Description", "IsDone", "ProjectId", "Title")
+VALUES (@p2, @p3, @p4, @p5, @p6)
+RETURNING "Id";
+2023-10-20 00:19:30.941 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 81), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int32), @p4='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("ContributorId", "Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2023-10-20 00:19:30.942 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 59), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int32), @p4='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("ContributorId", "Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2023-10-20 00:19:31.223 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-10-20 00:19:31.223 +03:00 [INF] Hosting environment: Development
+2023-10-20 00:19:31.223 +03:00 [INF] Content root path: C:\inetpub\wwwroot\PaySky\PaySky\src\PaySky.Web
+2023-10-20 00:19:31.319 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2023-10-20 00:19:31.550 +03:00 [WRN] Failed to determine the https port for redirect.
+2023-10-20 00:19:31.613 +03:00 [INF] Executing endpoint 'PaySky.Web.Controllers.HomeController.Index (PaySky.Web)'
+2023-10-20 00:19:31.639 +03:00 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller PaySky.Web.Controllers.HomeController (PaySky.Web).
+2023-10-20 00:19:31.671 +03:00 [INF] Executing ViewResult, running view Index.
+2023-10-20 00:19:32.238 +03:00 [INF] Executed ViewResult - view Index executed in 575.9964ms.
+2023-10-20 00:19:32.247 +03:00 [INF] Executed action PaySky.Web.Controllers.HomeController.Index (PaySky.Web) in 607.0811ms
+2023-10-20 00:19:32.249 +03:00 [INF] Executed endpoint 'PaySky.Web.Controllers.HomeController.Index (PaySky.Web)'
+2023-10-20 00:19:32.475 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/PaySky.Web.styles.css?v=0Uaex8W22b-_b2a5t18n9GgPAZShezjrb3JaMR-JBPo - -
+2023-10-20 00:19:32.475 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - -
+2023-10-20 00:19:32.475 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2023-10-20 00:19:32.475 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - -
+2023-10-20 00:19:32.489 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2023-10-20 00:19:32.505 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - -
+2023-10-20 00:19:32.540 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 1226.7334ms
+2023-10-20 00:19:32.634 +03:00 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: 'C:\inetpub\wwwroot\PaySky\PaySky\src\PaySky.Web\wwwroot\lib\jquery\dist\jquery.min.js'
+2023-10-20 00:19:32.634 +03:00 [INF] Sending file. Request path: '/PaySky.Web.styles.css'. Physical path: 'C:\inetpub\wwwroot\PaySky\PaySky\src\PaySky.Web\obj\Debug\net7.0\scopedcss\bundle\PaySky.Web.styles.css'
+2023-10-20 00:19:32.634 +03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\inetpub\wwwroot\PaySky\PaySky\src\PaySky.Web\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css'
+2023-10-20 00:19:32.634 +03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\inetpub\wwwroot\PaySky\PaySky\src\PaySky.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js'
+2023-10-20 00:19:32.634 +03:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: 'C:\inetpub\wwwroot\PaySky\PaySky\src\PaySky.Web\wwwroot\css\site.css'
+2023-10-20 00:19:32.634 +03:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\inetpub\wwwroot\PaySky\PaySky\src\PaySky.Web\wwwroot\js\site.js'
+2023-10-20 00:19:32.635 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/PaySky.Web.styles.css?v=0Uaex8W22b-_b2a5t18n9GgPAZShezjrb3JaMR-JBPo - - - 200 1127 text/css 160.7890ms
+2023-10-20 00:19:32.635 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 200 194 text/css 160.9079ms
+2023-10-20 00:19:32.635 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 200 230 text/javascript 146.2334ms
+2023-10-20 00:19:32.676 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.min.css - - - 200 162726 text/css 199.8552ms
+2023-10-20 00:19:32.676 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-10-20 00:19:32.676 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-10-20 00:19:32.676 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.min.js - - - 200 89478 text/javascript 169.7799ms
+2023-10-20 00:19:32.680 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 200 78474 text/javascript 204.8921ms
+2023-10-20 00:19:32.684 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12352 application/javascript;+charset=utf-8 6.4119ms
+2023-10-20 00:19:32.763 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 87.4241ms
+2023-10-20 00:19:32.792 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/favicon.ico - -
+2023-10-20 00:19:32.796 +03:00 [INF] Sending file. Request path: '/favicon.ico'. Physical path: 'C:\inetpub\wwwroot\PaySky\PaySky\src\PaySky.Web\wwwroot\favicon.ico'
+2023-10-20 00:19:32.797 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/favicon.ico - - - 200 5430 image/x-icon 4.8081ms
+2023-10-20 00:19:52.662 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Project/1 - -
+2023-10-20 00:19:52.666 +03:00 [INF] Executing endpoint 'PaySky.Web.Controllers.ProjectController.Index (PaySky.Web)'
+2023-10-20 00:19:52.689 +03:00 [INF] Route matched with {action = "Index", controller = "Project", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller PaySky.Web.Controllers.ProjectController (PaySky.Web).
+2023-10-20 00:19:53.167 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__projectId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."Name", "t"."Priority", "t0"."Id", "t0"."ContributorId", "t0"."Description", "t0"."IsDone", "t0"."ProjectId", "t0"."Title"
+FROM (
+    SELECT "p"."Id", "p"."Name", "p"."Priority"
+    FROM "Projects" AS "p"
+    WHERE "p"."Id" = @__projectId_0
+    LIMIT 1
+) AS "t"
+LEFT JOIN "ToDoItems" AS "t0" ON "t"."Id" = "t0"."ProjectId"
+ORDER BY "t"."Id"
+2023-10-20 00:19:53.205 +03:00 [INF] Executing ViewResult, running view Index.
+2023-10-20 00:19:53.250 +03:00 [INF] Executed ViewResult - view Index executed in 46.871ms.
+2023-10-20 00:19:53.250 +03:00 [INF] Executed action PaySky.Web.Controllers.ProjectController.Index (PaySky.Web) in 561.419ms
+2023-10-20 00:19:53.251 +03:00 [INF] Executed endpoint 'PaySky.Web.Controllers.ProjectController.Index (PaySky.Web)'
+2023-10-20 00:19:53.264 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/PaySky.Web.styles.css?v=0Uaex8W22b-_b2a5t18n9GgPAZShezjrb3JaMR-JBPo - -
+2023-10-20 00:19:53.264 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-10-20 00:19:53.265 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-10-20 00:19:53.308 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12352 application/javascript;+charset=utf-8 2.5049ms
+2023-10-20 00:19:53.313 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Project/1 - - - 200 - text/html;+charset=utf-8 651.4128ms
+2023-10-20 00:19:53.325 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 60.2680ms
+2023-10-20 00:19:53.345 +03:00 [INF] The file /PaySky.Web.styles.css was not modified
+2023-10-20 00:19:53.347 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/PaySky.Web.styles.css?v=0Uaex8W22b-_b2a5t18n9GgPAZShezjrb3JaMR-JBPo - - - 304 - text/css 82.6867ms
+2023-10-20 00:19:57.021 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2023-10-20 00:19:57.022 +03:00 [INF] Executing endpoint 'PaySky.Web.Controllers.HomeController.Index (PaySky.Web)'
+2023-10-20 00:19:57.023 +03:00 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller PaySky.Web.Controllers.HomeController (PaySky.Web).
+2023-10-20 00:19:57.024 +03:00 [INF] Executing ViewResult, running view Index.
+2023-10-20 00:19:57.035 +03:00 [INF] Executed ViewResult - view Index executed in 12.2315ms.
+2023-10-20 00:19:57.036 +03:00 [INF] Executed action PaySky.Web.Controllers.HomeController.Index (PaySky.Web) in 12.8646ms
+2023-10-20 00:19:57.036 +03:00 [INF] Executed endpoint 'PaySky.Web.Controllers.HomeController.Index (PaySky.Web)'
+2023-10-20 00:19:57.038 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 17.0293ms
+2023-10-20 00:19:57.050 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-10-20 00:19:57.050 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-10-20 00:19:57.052 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12352 application/javascript;+charset=utf-8 1.4595ms
+2023-10-20 00:19:57.061 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 10.4506ms
