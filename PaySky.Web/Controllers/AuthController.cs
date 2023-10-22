@@ -8,6 +8,8 @@ using PaySky.Utility;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PaySky.Web.Controllers
 {
@@ -26,8 +28,9 @@ namespace PaySky.Web.Controllers
             _configuration = configuration;
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<ActionResult<User>> Register(UserDto userDto)
+        public async Task<ActionResult<string>> Register(UserDto userDto)
         {
             Encryption.EncryptPassword(userDto.Password,out byte[] PasswordHash,out byte[] PasswordSalt );
 
@@ -47,7 +50,7 @@ namespace PaySky.Web.Controllers
             return Ok(token);
         }
 
-
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ActionResult<String>> Login(UserLoginDto userLoginDto)
         {
@@ -70,28 +73,32 @@ namespace PaySky.Web.Controllers
 
         private string CreateToken(User user)
         {
-            List<Claim> claims = new List<Claim>
+            var issuer = _configuration["Jwt:Issuer"];
+            var audience = _configuration["Jwt:Audience"];
+            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
+            var tokenDescriptor = new SecurityTokenDescriptor
             {
-                new Claim(ClaimTypes.Name,user.Name),
-                new Claim(ClaimTypes.Role,user.role.Name)
+                Subject = new ClaimsIdentity(new[]
+                        {
+                    new Claim("Id", Guid.NewGuid().ToString()),
+                        new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                        new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                        new Claim(ClaimTypes.Role, user.role.Name),
+                        new Claim(JwtRegisteredClaimNames.Jti,
+                            Guid.NewGuid().ToString())
+                }),
+                Expires = DateTime.UtcNow.AddMinutes(5),
+                Issuer = issuer,
+                Audience = audience,
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature)
             };
 
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
-                    _configuration.GetSection("AppSettings:Token").Value
-                ));
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
-
-            var token = new JwtSecurityToken(
-                claims: claims,
-                expires: DateTime.Now.AddDays(100),
-                signingCredentials: creds
-                );
-
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-
-            return jwt;
+            return tokenHandler.WriteToken(token);
         }
+        
 
     }
 }

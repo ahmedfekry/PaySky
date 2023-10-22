@@ -22,7 +22,8 @@ namespace PaySky.Web.Controllers
 
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Applicant")]
+        [Authorize(Roles = "Employer")]
         public ActionResult Index()
         {
             
@@ -66,6 +67,10 @@ namespace PaySky.Web.Controllers
         public ActionResult Delete([FromRoute]int id)
         {
             var vacancy = _vacancyRepsitory.Get(vac => vac.Id == id);
+            if (vacancy == null)
+            {
+                return NotFound();
+            }
             _vacancyRepsitory.Dalete(vacancy);
             _vacancyRepsitory.Save();
 

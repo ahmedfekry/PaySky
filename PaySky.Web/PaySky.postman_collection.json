@@ -1,0 +1,348 @@
+{
+	"info": {
+		"_postman_id": "5bfaac6e-096f-4115-8dba-e14883aa6998",
+		"name": "PaySky",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1994153"
+	},
+	"item": [
+		{
+			"name": "Vacancy",
+			"item": [
+				{
+					"name": "Vacancy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIxYzRkZGVkLWZjMzktNDVmZi05ZGU3LTFiMTgzOGQwMmZhOSIsInN1YiI6ImFobWVkQG1haWwuY29tIiwiZW1haWwiOiJhaG1lZEBtYWlsLmNvbSIsInJvbGUiOiJBcHBsaWNhbnQiLCJqdGkiOiI0MWMwOTg3MC1jNWUxLTQ3NDctOTMzNi00MjIyMzllY2NhMGYiLCJuYmYiOjE2OTgwMDQzMDgsImV4cCI6MTY5ODAwNDYwOCwiaWF0IjoxNjk4MDA0MzA4LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MjEwLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcyMTAvIn0.6sAMlxFlrX7n5bDpxxyl5LCiBGvrQUxI9YOW3-FU-S_3txtBVK7a9rT-QRu3XN7MG_3LOsvIJ8nJr7jNEqZgoQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7210/api/vacancy",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"vacancy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vacancy Details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIxYzRkZGVkLWZjMzktNDVmZi05ZGU3LTFiMTgzOGQwMmZhOSIsInN1YiI6ImFobWVkQG1haWwuY29tIiwiZW1haWwiOiJhaG1lZEBtYWlsLmNvbSIsInJvbGUiOiJBcHBsaWNhbnQiLCJqdGkiOiI0MWMwOTg3MC1jNWUxLTQ3NDctOTMzNi00MjIyMzllY2NhMGYiLCJuYmYiOjE2OTgwMDQzMDgsImV4cCI6MTY5ODAwNDYwOCwiaWF0IjoxNjk4MDA0MzA4LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MjEwLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcyMTAvIn0.6sAMlxFlrX7n5bDpxxyl5LCiBGvrQUxI9YOW3-FU-S_3txtBVK7a9rT-QRu3XN7MG_3LOsvIJ8nJr7jNEqZgoQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7210/api/Vacancy/Details/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"Vacancy",
+								"Details",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vacancy Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIxYzRkZGVkLWZjMzktNDVmZi05ZGU3LTFiMTgzOGQwMmZhOSIsInN1YiI6ImFobWVkQG1haWwuY29tIiwiZW1haWwiOiJhaG1lZEBtYWlsLmNvbSIsInJvbGUiOiJBcHBsaWNhbnQiLCJqdGkiOiI0MWMwOTg3MC1jNWUxLTQ3NDctOTMzNi00MjIyMzllY2NhMGYiLCJuYmYiOjE2OTgwMDQzMDgsImV4cCI6MTY5ODAwNDYwOCwiaWF0IjoxNjk4MDA0MzA4LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MjEwLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcyMTAvIn0.6sAMlxFlrX7n5bDpxxyl5LCiBGvrQUxI9YOW3-FU-S_3txtBVK7a9rT-QRu3XN7MG_3LOsvIJ8nJr7jNEqZgoQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"string\",\r\n  \"description\": \"string\",\r\n  \"expiryDate\": \"2023-10-30\",\r\n  \"maxNumberOfApplicants\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7210/api/Vacancy/Create",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"Vacancy",
+								"Create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vacancy Update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIxYzRkZGVkLWZjMzktNDVmZi05ZGU3LTFiMTgzOGQwMmZhOSIsInN1YiI6ImFobWVkQG1haWwuY29tIiwiZW1haWwiOiJhaG1lZEBtYWlsLmNvbSIsInJvbGUiOiJBcHBsaWNhbnQiLCJqdGkiOiI0MWMwOTg3MC1jNWUxLTQ3NDctOTMzNi00MjIyMzllY2NhMGYiLCJuYmYiOjE2OTgwMDQzMDgsImV4cCI6MTY5ODAwNDYwOCwiaWF0IjoxNjk4MDA0MzA4LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MjEwLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcyMTAvIn0.6sAMlxFlrX7n5bDpxxyl5LCiBGvrQUxI9YOW3-FU-S_3txtBVK7a9rT-QRu3XN7MG_3LOsvIJ8nJr7jNEqZgoQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"string\",\r\n  \"description\": \"string\",\r\n  \"expiryDate\": \"2023-10-30\",\r\n  \"maxNumberOfApplicants\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7210/api/Vacancy/Update/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"Vacancy",
+								"Update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vacancy Apply",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIxYzRkZGVkLWZjMzktNDVmZi05ZGU3LTFiMTgzOGQwMmZhOSIsInN1YiI6ImFobWVkQG1haWwuY29tIiwiZW1haWwiOiJhaG1lZEBtYWlsLmNvbSIsInJvbGUiOiJBcHBsaWNhbnQiLCJqdGkiOiI0MWMwOTg3MC1jNWUxLTQ3NDctOTMzNi00MjIyMzllY2NhMGYiLCJuYmYiOjE2OTgwMDQzMDgsImV4cCI6MTY5ODAwNDYwOCwiaWF0IjoxNjk4MDA0MzA4LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MjEwLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcyMTAvIn0.6sAMlxFlrX7n5bDpxxyl5LCiBGvrQUxI9YOW3-FU-S_3txtBVK7a9rT-QRu3XN7MG_3LOsvIJ8nJr7jNEqZgoQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 0,\r\n  \"vacancyId\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7210/api/Vacancy/Apply",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"Vacancy",
+								"Apply"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vacancy Delete",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIxYzRkZGVkLWZjMzktNDVmZi05ZGU3LTFiMTgzOGQwMmZhOSIsInN1YiI6ImFobWVkQG1haWwuY29tIiwiZW1haWwiOiJhaG1lZEBtYWlsLmNvbSIsInJvbGUiOiJBcHBsaWNhbnQiLCJqdGkiOiI0MWMwOTg3MC1jNWUxLTQ3NDctOTMzNi00MjIyMzllY2NhMGYiLCJuYmYiOjE2OTgwMDQzMDgsImV4cCI6MTY5ODAwNDYwOCwiaWF0IjoxNjk4MDA0MzA4LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MjEwLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcyMTAvIn0.6sAMlxFlrX7n5bDpxxyl5LCiBGvrQUxI9YOW3-FU-S_3txtBVK7a9rT-QRu3XN7MG_3LOsvIJ8nJr7jNEqZgoQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7210/api/Vacancy/Delete/4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"Vacancy",
+								"Delete",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vacancy Deactivate",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIxYzRkZGVkLWZjMzktNDVmZi05ZGU3LTFiMTgzOGQwMmZhOSIsInN1YiI6ImFobWVkQG1haWwuY29tIiwiZW1haWwiOiJhaG1lZEBtYWlsLmNvbSIsInJvbGUiOiJBcHBsaWNhbnQiLCJqdGkiOiI0MWMwOTg3MC1jNWUxLTQ3NDctOTMzNi00MjIyMzllY2NhMGYiLCJuYmYiOjE2OTgwMDQzMDgsImV4cCI6MTY5ODAwNDYwOCwiaWF0IjoxNjk4MDA0MzA4LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MjEwLyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcyMTAvIn0.6sAMlxFlrX7n5bDpxxyl5LCiBGvrQUxI9YOW3-FU-S_3txtBVK7a9rT-QRu3XN7MG_3LOsvIJ8nJr7jNEqZgoQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7210/api/Vacancy/Deactivate/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7210",
+							"path": [
+								"api",
+								"Vacancy",
+								"Deactivate",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"ahmed@mail.com\",\r\n  \"password\": \"123456\",\r\n  \"name\": \"ahmed\",\r\n  \"role\": \"Applicant\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7210/api/Auth/register",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7210",
+					"path": [
+						"api",
+						"Auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"ahmed@mail.com\",\r\n  \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7210/api/Auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7210",
+					"path": [
+						"api",
+						"Auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"ahmed@mail.com\",\r\n  \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7210/api/Auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7210",
+					"path": [
+						"api",
+						"Auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
