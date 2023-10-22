@@ -5,6 +5,7 @@ using PaySky.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using PaySky.Web.Middleware;
 
 namespace PaySky.Web
 {
@@ -70,6 +71,8 @@ namespace PaySky.Web
             }
 
             app.UseHttpsRedirection();
+
+            app.UseMiddleware<ResponseFormatterMiddleware>();
 
             app.UseAuthorization();
             
