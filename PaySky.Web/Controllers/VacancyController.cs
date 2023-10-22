@@ -22,8 +22,7 @@ namespace PaySky.Web.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Applicant")]
-        [Authorize(Roles = "Employer")]
+        [Authorize(Roles = "Employer,Applicant")]
         public ActionResult Index()
         {
             
@@ -33,6 +32,7 @@ namespace PaySky.Web.Controllers
         }
 
         [Route("Details/{Id}")]
+        [Authorize(Roles = "Employer,Applicant")]
         [HttpGet]
         public ActionResult Detail([FromRoute]int Id)
         {
@@ -45,6 +45,7 @@ namespace PaySky.Web.Controllers
         }
 
         [HttpPost("Create")]
+        [Authorize(Roles = "Employer")]
         public ActionResult Create(VacancyDto vacancyDto)
         {
             var Vacancy = new Vacancy();
@@ -63,6 +64,7 @@ namespace PaySky.Web.Controllers
 
 
         [Route("Delete/{Id}")]
+        [Authorize(Roles = "Employer")]
         [HttpGet]
         public ActionResult Delete([FromRoute]int id)
         {
@@ -78,6 +80,7 @@ namespace PaySky.Web.Controllers
         }
 
         [Route("Update/{Id}")]
+        [Authorize(Roles = "Employer")]
         [HttpPost]
         public ActionResult Update([FromRoute]int Id, [FromBody] VacancyDto vacancyDto)
         {
@@ -99,6 +102,7 @@ namespace PaySky.Web.Controllers
         }
 
         [Route("Deactivate/{Id}")]
+        [Authorize(Roles = "Employer")]
         [HttpGet]
         public ActionResult DeactivateVacancy([FromRoute]int Id)
         {
@@ -118,6 +122,7 @@ namespace PaySky.Web.Controllers
         }
 
         [Route("Apply")]
+        [Authorize(Roles = "Applicant")]
         [HttpPost]
         public ActionResult Apply([FromBody] ApplicationDto applicationDto)
         {

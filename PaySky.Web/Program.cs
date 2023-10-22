@@ -39,6 +39,12 @@ namespace PaySky.Web
             });
             builder.Services.AddAuthorization();
 
+            builder.Services.AddCors(policyBuilder =>
+                policyBuilder.AddDefaultPolicy(policy =>
+                    policy.WithOrigins("*")
+                    .AllowAnyHeader()
+                    .AllowAnyHeader())
+            );
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -66,6 +72,8 @@ namespace PaySky.Web
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+            
+            app.UseCors();
 
             app.MapControllers();
 
